@@ -6,8 +6,8 @@ on:
   push:
     branches:
       - 'main'
-  schedule:
-    - cron: 20 20 * * 1-5
+  # schedule:
+  #   - cron: 25 2 * * 1,4
 permissions:
   scm-token-own: read
   scm-token-org: read
@@ -21,9 +21,9 @@ jobs:
       - name: black duck hybrid plugin scan
         uses: cloudbees-io/blackduck-sca-scan-dependency@v2
         with:
-          server-url: https://blackduck.saas-qa.beescloud.com
+          server-url: https://blackduck.saas-preprod.beescloud.com
           api-token: ${{ secrets.BD_API_TOKEN }}
-          project-name: blackduck-go-scan
+          project-name: blackduck-go-scan-prod
           project-version: 0.0.1
           detect-cli-params: --logging.level.detect=DEBUG --blackduck.offline.mode=false
           ref: main
